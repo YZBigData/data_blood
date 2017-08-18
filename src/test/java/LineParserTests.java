@@ -2,6 +2,7 @@ import bean.ColLine;
 import bean.SQLResult;
 import org.junit.Before;
 import org.junit.Test;
+import parser.LineParser;
 import util.PropertyFileUtil;
 
 import java.util.HashSet;

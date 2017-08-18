@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cbb2de81-b4ee-49b9-a50c-5c0a9fb458d6" name="Default" comment="" />
+    <list default="true" id="cbb2de81-b4ee-49b9-a50c-5c0a9fb458d6" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/LineParserTests.java" afterPath="$PROJECT_DIR$/src/test/java/LineParserTests.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/main/java/LineParser.java" afterPath="$PROJECT_DIR$/src/main/java/parser/LineParser.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,35 +74,72 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineParserTests.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="LineParserTests.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/LineParserTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15402">
-              <caret line="983" column="26" lean-forward="true" selection-start-line="983" selection-start-column="26" selection-end-line="983" selection-end-column="26" />
+            <state relative-caret-position="153">
+              <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="method#createTable#0;class#LineParserTests#0" expanded="false" />
                 <element signature="method#testParseAllColumn#0;class#LineParserTests#0" expanded="false" />
-                <element signature="e#3370#3378#0" expanded="true" />
-                <element signature="e#3436#3444#0" expanded="true" />
-                <element signature="e#3492#3500#0" expanded="true" />
-                <element signature="e#3554#3563#0" expanded="true" />
-                <element signature="e#4440#4448#0" expanded="true" />
-                <element signature="e#7636#7644#0" expanded="true" />
-                <element signature="e#7875#7883#0" expanded="true" />
+                <element signature="e#3396#3404#0" expanded="true" />
+                <element signature="e#3462#3470#0" expanded="true" />
+                <element signature="e#3518#3526#0" expanded="true" />
+                <element signature="e#3580#3589#0" expanded="true" />
+                <element signature="e#4466#4474#0" expanded="true" />
+                <element signature="e#7662#7670#0" expanded="true" />
+                <element signature="e#7901#7909#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/LineParser.java">
+      <file leaf-file-name="LineParser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/parser/LineParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="761" column="16" lean-forward="false" selection-start-line="761" selection-start-column="16" selection-end-line="761" selection-end-column="16" />
+            <state relative-caret-position="68">
+              <caret line="883" column="35" lean-forward="false" selection-start-line="883" selection-start-column="35" selection-end-line="883" selection-end-column="35" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1711#1733#0" expanded="true" />
+                <element signature="e#1794#1805#0" expanded="true" />
+                <element signature="e#1880#1893#0" expanded="true" />
+                <element signature="e#1951#1966#0" expanded="true" />
+                <element signature="e#2038#2062#0" expanded="true" />
+                <element signature="e#2114#2122#0" expanded="true" />
+                <element signature="e#2193#2202#0" expanded="true" />
+                <element signature="e#2272#2280#0" expanded="true" />
+                <element signature="e#2332#2341#0" expanded="true" />
+                <element signature="e#2395#2404#0" expanded="true" />
+                <element signature="e#2466#2485#0" expanded="true" />
+                <element signature="e#2725#2736#0" expanded="true" />
+                <element signature="e#2790#2799#0" expanded="true" />
+                <element signature="e#2853#2861#0" expanded="true" />
+                <element signature="e#2914#2922#0" expanded="true" />
+                <element signature="e#12500#12508#0" expanded="true" />
+                <element signature="e#15084#15085#0" expanded="true" />
+                <element signature="e#15159#15160#0" expanded="true" />
+                <element signature="e#15304#15315#0" expanded="true" />
+                <element signature="e#20977#20985#0" expanded="true" />
+                <element signature="e#22854#22863#0" expanded="true" />
+                <element signature="e#30505#30514#0" expanded="true" />
+                <element signature="e#32349#32350#0" expanded="true" />
+                <element signature="e#32381#32382#0" expanded="true" />
+                <element signature="e#33263#33264#0" expanded="true" />
+                <element signature="e#33297#33298#0" expanded="true" />
+                <element signature="e#34195#34218#0" expanded="true" />
+                <element signature="e#37661#37669#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HiveParser.java" pinned="false" current-in-tab="false">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hive/hive-exec/2.3.0/hive-exec-2.3.0-sources.jar!/org/apache/hadoop/hive/ql/parse/HiveParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="16">
+              <caret line="712" column="36" lean-forward="false" selection-start-line="712" selection-start-column="36" selection-end-line="712" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -128,6 +169,8 @@
       <find>TOK_UNION</find>
       <find>getpId</find>
       <find>Check.notEmpty</find>
+      <find>TOK_MAP</find>
+      <find>TOK_MAP=</find>
     </findStrings>
     <replaceStrings>
       <replace>setPId</replace>
@@ -178,6 +221,7 @@
         <option value="$PROJECT_DIR$/src/main/java/bean/Block.java" />
         <option value="$PROJECT_DIR$/src/main/java/bean/SQLResult.java" />
         <option value="$PROJECT_DIR$/src/test/java/LineParserTests.java" />
+        <option value="$PROJECT_DIR$/src/main/java/parser/LineParser.java" />
       </list>
     </option>
   </component>
@@ -235,31 +279,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="bean" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datablood" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datablood" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datablood" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datablood" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="exception" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="datablood" type="b2602c69:ProjectViewProjectNode" />
-              <item name="datablood" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="parser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="datablood" type="b2602c69:ProjectViewProjectNode" />
@@ -434,6 +454,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -445,11 +466,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33033708" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33033708" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32996634" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32921347" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -485,14 +506,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="16" lean-forward="false" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hive/hive-exec/2.3.0/hive-exec-2.3.0-sources.jar!/org/apache/hadoop/hive/ql/parse/HiveParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="190" column="61" lean-forward="false" selection-start-line="190" selection-start-column="52" selection-end-line="190" selection-end-column="61" />
           <folding />
         </state>
       </provider>
@@ -534,8 +547,8 @@
         <state relative-caret-position="288">
           <caret line="883" column="16" lean-forward="false" selection-start-line="883" selection-start-column="16" selection-end-line="883" selection-end-column="16" />
           <folding>
-            <element signature="e#37718#37719#0" expanded="true" />
-            <element signature="e#37754#37755#0" expanded="true" />
+            <element signature="e#37718#37719#0" expanded="false" />
+            <element signature="e#37754#37755#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -757,31 +770,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/LineParser.java">
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/hive/hive-exec/2.3.0/hive-exec-2.3.0-sources.jar!/org/apache/hadoop/hive/ql/parse/HiveParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="761" column="16" lean-forward="false" selection-start-line="761" selection-start-column="16" selection-end-line="761" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="16">
+          <caret line="712" column="36" lean-forward="false" selection-start-line="712" selection-start-column="36" selection-end-line="712" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/LineParserTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15402">
-          <caret line="983" column="26" lean-forward="true" selection-start-line="983" selection-start-column="26" selection-end-line="983" selection-end-column="26" />
+        <state relative-caret-position="153">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding>
-            <element signature="imports" expanded="true" />
             <element signature="method#createTable#0;class#LineParserTests#0" expanded="false" />
             <element signature="method#testParseAllColumn#0;class#LineParserTests#0" expanded="false" />
-            <element signature="e#3370#3378#0" expanded="true" />
-            <element signature="e#3436#3444#0" expanded="true" />
-            <element signature="e#3492#3500#0" expanded="true" />
-            <element signature="e#3554#3563#0" expanded="true" />
-            <element signature="e#4440#4448#0" expanded="true" />
-            <element signature="e#7636#7644#0" expanded="true" />
-            <element signature="e#7875#7883#0" expanded="true" />
+            <element signature="e#3396#3404#0" expanded="true" />
+            <element signature="e#3462#3470#0" expanded="true" />
+            <element signature="e#3518#3526#0" expanded="true" />
+            <element signature="e#3580#3589#0" expanded="true" />
+            <element signature="e#4466#4474#0" expanded="true" />
+            <element signature="e#7662#7670#0" expanded="true" />
+            <element signature="e#7901#7909#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/parser/LineParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="883" column="35" lean-forward="false" selection-start-line="883" selection-start-column="35" selection-end-line="883" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1711#1733#0" expanded="true" />
+            <element signature="e#1794#1805#0" expanded="true" />
+            <element signature="e#1880#1893#0" expanded="true" />
+            <element signature="e#1951#1966#0" expanded="true" />
+            <element signature="e#2038#2062#0" expanded="true" />
+            <element signature="e#2114#2122#0" expanded="true" />
+            <element signature="e#2193#2202#0" expanded="true" />
+            <element signature="e#2272#2280#0" expanded="true" />
+            <element signature="e#2332#2341#0" expanded="true" />
+            <element signature="e#2395#2404#0" expanded="true" />
+            <element signature="e#2466#2485#0" expanded="true" />
+            <element signature="e#2725#2736#0" expanded="true" />
+            <element signature="e#2790#2799#0" expanded="true" />
+            <element signature="e#2853#2861#0" expanded="true" />
+            <element signature="e#2914#2922#0" expanded="true" />
+            <element signature="e#12500#12508#0" expanded="true" />
+            <element signature="e#15084#15085#0" expanded="true" />
+            <element signature="e#15159#15160#0" expanded="true" />
+            <element signature="e#15304#15315#0" expanded="true" />
+            <element signature="e#20977#20985#0" expanded="true" />
+            <element signature="e#22854#22863#0" expanded="true" />
+            <element signature="e#30505#30514#0" expanded="true" />
+            <element signature="e#32349#32350#0" expanded="true" />
+            <element signature="e#32381#32382#0" expanded="true" />
+            <element signature="e#33263#33264#0" expanded="true" />
+            <element signature="e#33297#33298#0" expanded="true" />
+            <element signature="e#34195#34218#0" expanded="true" />
+            <element signature="e#37661#37669#0" expanded="true" />
           </folding>
         </state>
       </provider>
