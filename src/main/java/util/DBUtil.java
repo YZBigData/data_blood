@@ -15,11 +15,11 @@ public class DBUtil {
 
     //~ Instance fields --------------------------------------------------------
 
-    private String driver;// 驱动
-    private String url;// url
-    private String user;// 用户
-    private String password;//密码
-    private Connection conn;//连接
+    private String driver;
+    private String url;
+    private String user;
+    private String password;
+    private Connection conn;
 
     //~ Constructors -----------------------------------------------------------
 
@@ -100,15 +100,10 @@ public class DBUtil {
         }
         return map;
     }
-
+    
     /**
-     * �ر���ݿ�����ݿ����������ݿ�����
-     *
-     * @Function: Close all the statement and conn int this instance and close
-     * the parameter ResultSet
-     * @Param: ResultSet
-     * @Exception: SQLException, Exception
-     **/
+     * Close all the statement and conn int this instance and close the parameter ResultSet.
+     */
     public void close(ResultSet rs, Statement stmt) throws Exception {
         if (rs != null) {
             rs.close();
