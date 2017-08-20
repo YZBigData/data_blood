@@ -1,14 +1,15 @@
 package util;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.jetbrains.annotations.NotNull;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class HDPFileUtil {
     //~ Constructors -----------------------------------------------------------
@@ -18,79 +19,43 @@ public class HDPFileUtil {
 
     //~ Methods ----------------------------------------------------------------
 
+    @NotNull
     public static String read(String file) {
         StringBuilder sb = new StringBuilder();
         Configuration conf = new Configuration();
-        FileSystem fs = null;
-        FSDataInputStream fin = null;
-        BufferedReader in = null;
-        try {
-            fs = FileSystem.get(conf);
-            fin = fs.open(new Path(file));
-            String data;
-            in = new BufferedReader(new InputStreamReader(fin, "UTF-8"));
-            while ((data = in.readLine()) != null) {
-                sb.append(data).append('\n');
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (fin != null) {
-                try {
-                    fin.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (fs != null) {
-                try {
-                    fs.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return sb.toString();
-    }
-
-    public static String read4Linux(String file) {
-        StringBuilder sb = new StringBuilder();
-        String cmd = "hadoop fs -cat " + file;
-        InputStream in = null;
-        BufferedReader read = null;
-        try {
-            Process pro = Runtime.getRuntime().exec(cmd);
-            pro.waitFor();
-            in = pro.getInputStream();
-            read = new BufferedReader(new InputStreamReader(in));
+        try (FileSystem fs2 = FileSystem.get(conf);
+             FSDataInputStream fsDataInputStream = fs2.open(new Path(file));
+             InputStreamReader isr = new InputStreamReader(fsDataInputStream, "UTF-8");
+             BufferedReader br = new BufferedReader(isr)) {
             String line;
-            while ((line = read.readLine()) != null) {
+            while ((line = br.readLine()) != null) {
                 sb.append(line).append('\n');
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            if (in != null) {
-                try {
-                    in.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        }
+        return sb.toString();
+    }
+
+    @NotNull
+    public static String read4Linux(String file) {
+        StringBuilder sb = new StringBuilder();
+        Process pro;
+        try {
+            pro = Runtime.getRuntime().exec("hadoop fs -cat " + file);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+        try (InputStream is = pro.getInputStream();
+             InputStreamReader isr = new InputStreamReader(is);
+             BufferedReader br = new BufferedReader(isr)) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                sb.append(line).append('\n');
             }
-            if (read != null) {
-                try {
-                    read.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return sb.toString();
     }
