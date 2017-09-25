@@ -46,7 +46,7 @@ public class MetaDataDao {
         List<TableNode> list = new ArrayList<>();
         String sql = "SELECT data_id,data_name,datastorage_name from r_data where " + sqlWhere + "";
         try {
-            List<Map<String, Object>> rs = dbUtil.doSelect(sql);
+            List<Map<String, Object>> rs = this.dbUtil.doSelect(sql);
             for (Map<String, Object> map : rs) {
                 TableNode tableNode = new TableNode();
                 tableNode.setId((Long) map.get("data_id"));

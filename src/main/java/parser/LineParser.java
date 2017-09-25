@@ -48,31 +48,31 @@ public class LineParser {
     private static final String CON_WHERE = "WHERE:";
     private static final String TOK_TMP_FILE = "TOK_TMP_FILE";
 
-    private Map<String /*table*/, List<String/*column*/>> dbMap = new HashMap<String, List<String>>();
-    private List<QueryTree> queryTreeList = new ArrayList<QueryTree>(); //子查询树形关系保存
+    private Map<String /*table*/, List<String/*column*/>> dbMap = new HashMap<>();
+    private List<QueryTree> queryTreeList = new ArrayList<>(); //子查询树形关系保存
 
-    private Stack<Set<String>> conditionsStack = new Stack<Set<String>>();
-    private Stack<List<ColLine>> colsStack = new Stack<List<ColLine>>();
+    private Stack<Set<String>> conditionsStack = new Stack<>();
+    private Stack<List<ColLine>> colsStack = new Stack<>();
 
-    private Map<String, List<ColLine>> resultQueryMap = new HashMap<String, List<ColLine>>();
-    private Set<String> conditions = new HashSet<String>(); //where or join 条件缓存
-    private List<ColLine> cols = new ArrayList<ColLine>(); //一个子查询内的列缓存
+    private Map<String, List<ColLine>> resultQueryMap = new HashMap<>();
+    private Set<String> conditions = new HashSet<>(); //where or join 条件缓存
+    private List<ColLine> cols = new ArrayList<>(); //一个子查询内的列缓存
 
-    private Stack<String> tableNameStack = new Stack<String>();
-    private Stack<Boolean> joinStack = new Stack<Boolean>();
-    private Stack<ASTNode> joinOnStack = new Stack<ASTNode>();
+    private Stack<String> tableNameStack = new Stack<>();
+    private Stack<Boolean> joinStack = new Stack<>();
+    private Stack<ASTNode> joinOnStack = new Stack<>();
 
-    private Map<String, QueryTree> queryMap = new HashMap<String, QueryTree>();
+    private Map<String, QueryTree> queryMap = new HashMap<>();
     private boolean joinClause = false;
     private ASTNode joinOn = null;
     private String nowQueryDB = "default"; //hive的默认库
     private boolean isCreateTable = false;
 
     //结果
-    private List<SQLResult> resultList = new ArrayList<SQLResult>();
-    private List<ColLine> colLines = new ArrayList<ColLine>();
-    private Set<String> outputTables = new HashSet<String>();
-    private Set<String> inputTables = new HashSet<String>();
+    private List<SQLResult> resultList = new ArrayList<>();
+    private List<ColLine> colLines = new ArrayList<>();
+    private Set<String> outputTables = new HashSet<>();
+    private Set<String> inputTables = new HashSet<>();
 
 //    public List<ColLine> getColLines() {
 // 		return colLines;
@@ -93,9 +93,6 @@ public class LineParser {
 
     /**
      * 解析当前节点
-     *
-     * @param ast
-     * @return
      */
     private void parseCurrentNode(ASTNode ast) {
         if (ast.getToken() != null) {
@@ -123,7 +120,7 @@ public class LineParser {
                     inputTables.add(tableInFull);
                     MetaCache.getInstance().init(tableInFull); //初始化数据，供以后使用
                     queryMap.clear();
-                    String alia = null;
+                    String alia;
                     if (ast.getChild(1) != null) { //(TOK_TABREF (TOK_TABNAME detail usersequence_client) c)
                         alia = ast.getChild(1).getText().toLowerCase();
                         QueryTree qt = new QueryTree();
@@ -199,7 +196,7 @@ public class LineParser {
                     }
                     break;
                 case HiveParser.TOK_SELEXPR: //输入输出字段的处理
-                    /**
+                    /*
                      * (TOK_DESTINATION (TOK_DIR TOK_TMP_FILE))
                      * 	(TOK_SELECT (TOK_SELEXPR TOK_ALLCOLREF))
                      *
@@ -233,9 +230,7 @@ public class LineParser {
                                     List<ColLine> colLineList = qt.getColLineList();
                                     if (!Check.isEmpty(colLineList)) {
                                         isSub = true;
-                                        for (ColLine colLine : colLineList) {
-                                            cols.add(colLine);
-                                        }
+                                        cols.addAll(colLineList);
                                     }
                                 }
                             }
@@ -250,10 +245,10 @@ public class LineParser {
                                 }
                                 List<String> colByTab = MetaCache.getInstance().getColumnByDBAndTable(tables);
                                 for (String column : colByTab) {
-                                    Set<String> fromNameSet = new LinkedHashSet<String>();
+                                    Set<String> fromNameSet = new LinkedHashSet<>();
                                     fromNameSet.add(tables + SPLIT_DOT + column);
                                     ColLine cl = new ColLine(column, tables + SPLIT_DOT + column, fromNameSet,
-                                            new LinkedHashSet<String>(), destTable, column);
+                                            new LinkedHashSet<>(), destTable, column);
                                     cols.add(cl);
                                 }
                             }
@@ -262,7 +257,7 @@ public class LineParser {
                         Block bk = getBlockIteral((ASTNode) ast.getChild(0));
                         String toNameParse = getToNameParse(ast, bk);
                         Set<String> fromNameSet = filterData(bk.getColSet());
-                        ColLine cl = new ColLine(toNameParse, bk.getCondition(), fromNameSet, new LinkedHashSet<String>(), destTable, "");
+                        ColLine cl = new ColLine(toNameParse, bk.getCondition(), fromNameSet, new LinkedHashSet<>(), destTable, "");
                         cols.add(cl);
                     }
                     break;
@@ -270,7 +265,7 @@ public class LineParser {
                     conditions.add(CON_WHERE + getBlockIteral((ASTNode) ast.getChild(0)).getCondition());
                     break;
                 default:
-                    /**
+                    /*
                      * (or
                      *   (> (. (TOK_TABLE_OR_COL p) orderid) (. (TOK_TABLE_OR_COL c) orderid))
                      *   (and (= (. (TOK_TABLE_OR_COL p) a) (. (TOK_TABLE_OR_COL c) b))
@@ -290,7 +285,6 @@ public class LineParser {
     /**
      * 查找当前节点的父子查询节点
      *
-     * @param ast
      */
     private QueryTree getSubQueryParent(Tree ast) {
         Tree _tree = ast;
@@ -316,9 +310,8 @@ public class LineParser {
      * 查找当前节点的子子查询节点（索引）
      */
     private List<QueryTree> getSubQueryChilds(int id) {
-        List<QueryTree> list = new ArrayList<QueryTree>();
-        for (int i = 0; i < queryTreeList.size(); i++) {
-            QueryTree qt = queryTreeList.get(i);
+        List<QueryTree> list = new ArrayList<>();
+        for (QueryTree qt : queryTreeList) {
             if (id == qt.getPId()) {
                 list.add(qt);
             }
@@ -328,10 +321,6 @@ public class LineParser {
 
     /**
      * 获得要解析的名称
-     *
-     * @param ast
-     * @param bk
-     * @return
      */
     private String getToNameParse(ASTNode ast, Block bk) {
         String alia = "";
@@ -357,8 +346,6 @@ public class LineParser {
      * <p>t1 join t2 on t1.col1=t2.col1 and t1.col2=123
      * <p>select count(distinct col1) from t1
      *
-     * @param ast
-     * @return
      */
     private Block getBlockIteral(ASTNode ast) {
         if (ast.getType() == HiveParser.KW_OR
@@ -435,7 +422,7 @@ public class LineParser {
 
 
     private Set<String> bkToCols(Block col, Set<Block> processChilds) {
-        Set<String> set = new LinkedHashSet<String>(processChilds.size());
+        Set<String> set = new LinkedHashSet<>(processChilds.size());
         for (Block colLine : processChilds) {
             if (!Check.isEmpty(colLine.getColSet())) {
                 set.addAll(colLine.getColSet());
@@ -458,7 +445,6 @@ public class LineParser {
     /**
      * 解析when条件
      *
-     * @param ast
      * @return case when c1>100 then col1 when c1>0 col2 else col3 end
      */
     private String getWhenCondition(ASTNode ast) {
@@ -467,13 +453,13 @@ public class LineParser {
         for (int i = 1; i < cnt; i++) {
             String condition = getBlockIteral((ASTNode) ast.getChild(i)).getCondition();
             if (i == 1) {
-                sb.append("(case when " + condition);
+                sb.append("(case when ").append(condition);
             } else if (i == cnt - 1) { //else
-                sb.append(" else " + condition + " end)");
+                sb.append(" else ").append(condition).append(" end)");
             } else if (i % 2 == 0) { //then
-                sb.append(" then " + condition);
+                sb.append(" then ").append(condition);
             } else {
-                sb.append(" when " + condition);
+                sb.append(" when ").append(condition);
             }
         }
         return sb.toString();
@@ -483,8 +469,6 @@ public class LineParser {
     /**
      * 保存subQuery查询别名和字段信息
      *
-     * @param sqlIndex
-     * @param tableAlias
      */
     private void putResultQueryMap(int sqlIndex, String tableAlias) {
         List<ColLine> list = generateColLineList(cols, conditions);
@@ -493,7 +477,7 @@ public class LineParser {
     }
 
     private List<ColLine> generateColLineList(List<ColLine> cols, Set<String> conditions) {
-        List<ColLine> list = new ArrayList<ColLine>();
+        List<ColLine> list = new ArrayList<>();
         for (ColLine entry : cols) {
             entry.getConditionSet().addAll(conditions);
             list.add(ParseUtil.cloneColLine(entry));
@@ -515,9 +499,7 @@ public class LineParser {
     /**
      * 从指定索引位置开始解析子树
      *
-     * @param ast
      * @param startIndex 开始索引
-     * @return
      */
     private Set<Block> processChilds(ASTNode ast, int startIndex) {
         int cnt = ast.getChildCount();
@@ -535,8 +517,6 @@ public class LineParser {
     /**
      * 解析获得列名或者字符数字等和条件
      *
-     * @param ast
-     * @return
      */
     private Block parseBlock(ASTNode ast) {
         if (ast.getType() == HiveParser.DOT
@@ -566,9 +546,6 @@ public class LineParser {
     /**
      * 根据列名和别名获得块信息
      *
-     * @param column
-     * @param alia
-     * @return
      */
     private Block getBlock(String column, String alia) {
         String[] result = getTableAndAlia(alia);
@@ -620,7 +597,6 @@ public class LineParser {
     /**
      * 过滤掉无用的列：如col1,123,'2013',col2 ==>> col1,col2
      *
-     * @return
      */
     private Set<String> filterData(Set<String> colSet) {
         Set<String> set = new LinkedHashSet<>();
@@ -636,8 +612,6 @@ public class LineParser {
     /**
      * 解析所有子节点
      *
-     * @param ast
-     * @return
      */
     private void parseChildNodes(ASTNode ast) {
         int numCh = ast.getChildCount();
@@ -652,7 +626,6 @@ public class LineParser {
     /**
      * 准备解析当前节点
      *
-     * @param ast
      */
     private void prepareToParseCurrentNodeAndChilds(ASTNode ast) {
         if (ast.getToken() != null) {
@@ -683,8 +656,6 @@ public class LineParser {
 
     /**
      * 结束解析当前节点
-     *
-     * @param ast
      */
     private void endParseCurrentNode(ASTNode ast) {
         if (ast.getToken() != null) {
@@ -720,7 +691,7 @@ public class LineParser {
         validateUnion(cols);
         int size = cols.size();
         int colNum = size / 2;
-        List<ColLine> list = new ArrayList<ColLine>(colNum);
+        List<ColLine> list = new ArrayList<>(colNum);
         for (int i = 0; i < colNum; i++) { //合并字段
             ColLine col = cols.get(i);
             for (int j = i + colNum; j < size; j = j + colNum) {
@@ -837,14 +808,14 @@ public class LineParser {
      * 设置输出表的字段对应关系
      */
     private void setColLineList() {
-        Map<String, List<ColLine>> map = new HashMap<String, List<ColLine>>();
+        Map<String, List<ColLine>> map = new HashMap<>();
         for (Entry<String, List<ColLine>> entry : resultQueryMap.entrySet()) {
             if (entry.getKey().startsWith(TOK_EOF)) {
                 List<ColLine> value = entry.getValue();
                 for (ColLine colLine : value) {
                     List<ColLine> list = map.get(colLine.getToTable());
                     if (Check.isEmpty(list)) {
-                        list = new ArrayList<ColLine>();
+                        list = new ArrayList<>();
                         map.put(colLine.getToTable(), list);
                     }
                     list.add(colLine);
@@ -923,14 +894,12 @@ public class LineParser {
     /**
      * 根据别名查询表明
      *
-     * @param alia
-     * @return
      */
     private String[] getTableAndAlia(String alia) {
         String _alia = !Check.isEmpty(alia) ? alia :
                 ParseUtil.collectionToString(queryMap.keySet(), SPLIT_AND, true);
         String[] result = {"", _alia};
-        Set<String> tableSet = new HashSet<String>();
+        Set<String> tableSet = new HashSet<>();
         if (!Check.isEmpty(_alia)) {
             String[] split = _alia.split(SPLIT_AND);
             for (String string : split) {
@@ -950,7 +919,6 @@ public class LineParser {
     /**
      * 校验union
      *
-     * @param list
      */
     private void validateUnion(List<ColLine> list) {
         int size = list.size();

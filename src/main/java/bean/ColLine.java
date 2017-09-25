@@ -65,8 +65,7 @@ public class ColLine {
 
     //~ Constructors -----------------------------------------------------------
 
-    public ColLine() {
-    }
+    public ColLine() {}
 
     public ColLine(String toNameParse, String colCondition,
                    Set<String> fromNameSet, Set<String> conditionSet, String toTable,
@@ -86,8 +85,8 @@ public class ColLine {
         if (needAdd()) {
             this.allConditionSet.add(CON_COLFUN + this.colCondition);
         }
-        allConditionSet.addAll(conditionSet);
-        return allConditionSet;
+        this.allConditionSet.addAll(this.conditionSet);
+        return this.allConditionSet;
     }
 
     private boolean needAdd() {
